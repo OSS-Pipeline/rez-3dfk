@@ -1,6 +1,6 @@
 name = "3dfk"
 
-version = "1.6.13"
+version = "1.7.15"
 
 authors = [
     "DNA Research"
@@ -12,7 +12,7 @@ description = \
     """
 
 requires = [
-    "3delight_core-{version}".format(version=str(version)),
+    "3delight-{version}".format(version=str(version)),
     "cmake-3+",
     "katana-3.0+"
 ]
@@ -29,5 +29,12 @@ with scope("config") as config:
 uuid = "3dfk-{version}".format(version=str(version))
 
 def commands():
-    env.KATANA_RESOURCES.append("{root}/3DelightForKatana")
+    import os
+
+    env.KATANA_RESOURCES.append(
+        os.path.join(
+            str(env.REZ_3DELIGHT_ROOT),
+            "3DelightForKatana"
+        )
+    )
     env.DEFAULT_RENDERER.set("dl")
